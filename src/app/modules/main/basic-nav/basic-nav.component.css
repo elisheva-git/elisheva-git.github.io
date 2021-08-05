@@ -1,0 +1,41 @@
+.wrapper {
+	display: grid;
+	grid-template-areas:
+    "header header header"
+    "nav section aside"
+    "footer footer footer";
+	grid-template-rows: 80px 1fr 50px;
+	grid-template-columns: 15% 1fr 15%;
+	grid-gap: 4px;
+    height: 100%;
+}
+
+header {
+    grid-area: header;
+}
+
+nav {
+    grid-area: nav;
+}
+
+section {
+    grid-area: section;
+}
+
+aside {
+    grid-area: aside;
+}
+
+footer {
+    grid-area: footer;
+}
+
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.activeNav{
+    /* text-shadow: 10px 10px 10px black; */
+    text-shadow: 0 0 9px #fff, 0 0 10px white, 0 0 33px white, 0 0 30px white, 0 0 58px white, 0 0 4px white, 0 0 52px white;
+}

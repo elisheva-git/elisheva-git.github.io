@@ -1,0 +1,22 @@
+<div class="flex-container">
+    <div class="title_fav">favorites</div>
+    <div>
+        <mat-icon color="primary" class="icon-fav" colo>favorite  </mat-icon>
+        <mat-icon color="primary" class="icon-fav" colo>favorite  </mat-icon>
+        <mat-icon color="primary" class="icon-fav" colo>favorite  </mat-icon>
+    </div>
+    <div class="flex-row-card">
+        <mat-card  class="flex-column"  *ngFor="let city of favoriteFromService">
+            <div (click)="showFullWeather(city.key,city.name)" class="flex-column" >
+                <div>{{city.name}}</div>
+                <div>{{city.currentWeatherText}}</div>
+                <div> {{city.currentWeatherValue}}</div>
+            </div>
+            <button (click)="removeFromFavorites(city)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </mat-card>
+    </div>
+</div>
+
+

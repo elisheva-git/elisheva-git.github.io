@@ -1,0 +1,23 @@
+<div class="wrapper">
+    <header>
+        <p>
+            <mat-toolbar color="primary">
+                <span>Weather</span>
+                <span class="example-spacer"></span>
+                <button routerLink="/home" routerLinkActive="activeNav" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+                    <mat-icon>home</mat-icon>
+                </button>
+                <button routerLink="/favorites" routerLinkActive="activeNav" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+                    <mat-icon>favorite</mat-icon>
+                </button>
+            </mat-toolbar>
+        </p>
+
+    </header>
+    <nav></nav>
+    <section>
+        <router-outlet></router-outlet>
+    </section>
+    <aside></aside>
+    <footer></footer>
+</div>

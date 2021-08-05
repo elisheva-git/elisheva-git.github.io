@@ -1,0 +1,54 @@
+<div class="wrapper">
+    <div>
+        <form class="select-city-form">
+            <mat-form-field class="city-form-full-width" appearance="fill">
+                <mat-label>Search City</mat-label>
+                <input type="text" aria-label="Number" matInput [formControl]="inputCityControl"
+                    [matAutocomplete]="auto" (input)="onKeyPressInSearchCity()">
+                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayNameCity"
+                    (optionSelected)="selectedCity($event.option.value)">
+                    <mat-option *ngFor="let option of cities$ | async" [value]="option">
+                        {{option.LocalizedName}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </form>
+    </div>
+    <div *ngIf="currentCity&&currentCity.fiveDaysDailyForecasts">
+        <div class="flex-container">
+            <div class="flex-row">
+                <div class="title">{{currentCity.name}}</div>
+                <div>
+                    <mat-radio-group color="primary" class="example-radio-group" aria-label="Select an option"
+                        (change)="unitTempChange($event)" [(ngModel)]="currentCity.isCelsius">
+                        <mat-radio-button value="true">Celsius</mat-radio-button>
+                        <mat-radio-button value="false">Fahrenheit</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+            </div>
+            <div class="flex-column">
+                <mat-chip-list #chipList aria-label="Video keywords" multiple >
+                    <mat-chip>
+                      {{currentCity.fiveDaysDailyForecasts[0].Date | date}}
+                    </mat-chip>
+                </mat-chip-list>
+                <div class="title title-primary" color="primary">{{currentCity.fiveDaysDailyForecasts[0].Day.IconPhrase}}</div>
+                <div>Minimum : {{currentCity.fiveDaysDailyForecasts[0].Temperature.Minimum.Value}}</div>
+                <div>Maximum : {{currentCity.fiveDaysDailyForecasts[0].Temperature.Maximum.Value}}</div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="currentCity" class="flex-row-card">
+        <mat-card class="flex-column" *ngFor="let day of currentCity.fiveDaysDailyForecasts">
+            <span>{{day.Date|date:'EEEE'}}</span>
+            <span>{{day.Temperature.Minimum.Value}} - {{day.Temperature.Maximum.Value}}</span>
+        </mat-card>
+    </div>
+    <div>
+        <button (click)="addOrDeleteFavorites()" mat-stroked-button color="primary">
+            <span *ngIf="isInFavorite">delete from favorite </span>
+            <span *ngIf="!isInFavorite">add to favorite </span>
+            <mat-icon> favorite</mat-icon>
+        </button>
+    </div>
+</div>
